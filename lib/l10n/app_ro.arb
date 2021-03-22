@@ -1,0 +1,76 @@
+{
+  "helloWorld": "Salut, lume!",
+  "buy": "Cumpără",
+
+  "current": "Curent",
+
+  "previous": "Anterior",
+
+  "pricediff": "Dif Preț",
+
+  "stocks": "Acțiuni",
+
+  "alert": "Avertizare",
+
+  "alertBudgetMsg": "Nu sunt destui bani pentru a finaliza tranzacția!",
+
+  "alertQtyMsg": "Nu ați setat cantitatea!",
+
+  "companyDescription": "Descrierea Companiei",
+
+  "market": "Piață",
+
+  "profile": "Profil",
+
+  "name": "Nume",
+
+  "email": "Email",
+
+  "statistics": "Statistici",
+
+  "logout": "Deconectare",
+
+  "noStocksFound": "Nicio acțiune găsită!",
+
+  "quantity": "Cantitate",
+
+  "boughtFor": "Cumpărat",
+
+  "cancel": "Anulează",
+
+  "pricedifference": "Diferentă Preț",
+
+  "cash": "CASH",
+
+  "currency": "RON",
+
+  "sell": "Vinde",
+
+  "login": "Conectare",
+
+  "letsTrade": "Hai să tranzacționăm!",
+
+  "invalidEmail": "Vă rugăm introduceți un email valid (ex. ion@domeniu.ro)",
+
+  "insertPassword": "Vă rugăm introduceți o parolă!",
+
+  "allRightsReserved": "Toate drepturile rezervate",
+
+  "register": "Înregistrare",
+
+  "joinUs": "Alătură-te nouă!",
+
+  "insertName": "Vă rugăm introduceți un nume!",
+
+  "invalidPassword": "Parola este invalidă. Trebuie să aibă minim 8 caractere lungime și să conțină o litera mare și un număr.",
+
+  "password": "Parolă",
+
+  "confirmPassword": "Confirmare parolă",
+
+  "invalidConfirmPassword": "Parolele nu coincid!",
+
+  "help": "Ajutor",
+ 
+  "settings": "Setări"
+}

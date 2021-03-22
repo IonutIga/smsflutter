@@ -1,0 +1,196 @@
+{
+  "helloWorld": "Hello World!",
+  "@helloWorld": {
+    "description": "The conventional newborn programmer greeting"
+  },
+
+  "buy": "Buy",
+  "@buy": {
+    "description": ""
+  },
+
+  "current": "Current",
+  "@current": {
+    "description": "Label for the current price"
+  },
+
+  "previous": "Previous",
+  "@previous": {
+    "description": "Label for the previous price"
+  },
+
+  "pricediff": "Price Diff",
+  "@pricediff": {
+    "description": "Label for the price difference on details"
+  },
+
+  "pricedifference": "Price Difference",
+  "@pricedifference": {
+    "description": "Label for the price difference on market"
+  },
+
+
+  "stocks": "Stocks",
+  "@stocks": {
+    "description": "Label for stocks quantity"
+  },
+
+
+  "alert": "Alert",
+  "@alert": {
+    "description": "Label for alert title"
+  },
+
+
+  "alertBudgetMsg": "Not enough money to complete the transaction!",
+  "@alertBudgetMsg": {
+    "description": "Text for not enough money alert "
+  },
+
+
+  "alertQtyMsg": "No quantity set!",
+  "@alertQtyMsg": {
+    "description": "Text for no quantity alert "
+  },
+
+  "companyDescription": "Company Description",
+  "@companyDescription": {
+    "description": "Label for company description"
+  },
+
+  "market": "Market",
+  "@market": {
+    "description": "Label for market"
+  },
+
+  "profile": "Profile",
+  "@profile": {
+    "description": "Label for profile"
+  },
+
+  "name": "Name",
+  "@name": {
+    "description": "Label for name"
+  },
+
+  "email": "Email",
+  "@email": {
+    "description": "Label for email"
+  },
+
+  "statistics": "Statistics",
+  "@statistics": {
+    "description": "Label for statistics"
+  },
+
+  "logout": "Logout",
+  "@logout": {
+    "description": "Label for logout"
+  },
+
+  "noStocksFound": "No stocks found!",
+  "@noStocksFound": {
+    "description": "Label for no stocks found"
+  },
+
+  "quantity": "Quantity",
+  "@quantity": {
+    "description": "Label for quantity"
+  },
+
+  "boughtFor": "Bought for",
+  "@boughtFor": {
+    "description": "Label for buy price"
+  },
+
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Label for cancel"
+  },
+
+  "cash": "CASH",
+  "@cash": {
+    "description": "Label for budget"
+  },
+
+  "currency": "€",
+  "@currency": {
+    "description": "Label for currency"
+  },
+
+  "sell": "Sell",
+  "@sell": {
+    "description": "Label for sell"
+  },
+
+  "login": "Login",
+  "@login": {
+    "description": "Label for login"
+  },
+
+  "letsTrade": "Let's Trade!",
+  "@letsTrade": {
+    "description": "Label for letsTrade"
+  },
+
+  "invalidEmail": "Please insert a valid email (ex. john@domain.com)",
+  "@invalidEmail": {
+    "description": "Label for invalidEmail"
+  },
+
+  "insertPassword": "Please insert a password!",
+  "@insertPassword": {
+    "description": "Label for insertPassword"
+  },
+
+  "allRightsReserved": "All Rights Reserved",
+  "@allRightsReserved": {
+    "description": "Label for allRightsReserved"
+  },
+
+  "register": "Register",
+  "@register": {
+    "description": "Label for register"
+  },
+
+  "joinUs": "Join Us!",
+  "@joinUs": {
+    "description": "Label for joinUs"
+  },
+
+  "insertName": "Please insert a name!",
+  "@insertName": {
+    "description": "Label for insertName"
+  },
+
+  "invalidPassword": "Your password is invalid. It must be minimum 8 characters length, containing an upper letter, lower letter and a number.",
+  "@invalidPassword": {
+    "description": "Label for invalidPassword"
+  },
+
+  "password": "Password",
+  "@password": {
+    "description": "Label for password"
+  },
+
+  "confirmPassword": "Confirm Password",
+  "@confirmPassword": {
+    "description": "Label for confirmPassword"
+  },
+
+  "invalidConfirmPassword": "Passwords don't match!",
+  "@invalidConfirmPassword": {
+    "description": "Label for invalidConfirmPassword"
+  },
+
+  "help": "Help",
+  "@help": {
+    "description": "Label for help"
+  },
+
+  "settings": "Settings",
+  "@settings": {
+    "description": "Label for settings"
+  }
+  
+}
