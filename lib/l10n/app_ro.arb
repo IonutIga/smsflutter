@@ -72,5 +72,10 @@
 
   "help": "Ajutor",
  
-  "settings": "Setări"
+  "settings": "Setări",
+
+  "helpText": "Tutorial video pentru limba română",
+
+  "tutorialLink": "https://firebasestorage.googleapis.com/v0/b/stockmarketsimulator-17d7d.appspot.com/o/RoTutorial.mp4?alt=media&token=b9916f2e-d48e-48fe-ab95-07af987eada2"
+
 }

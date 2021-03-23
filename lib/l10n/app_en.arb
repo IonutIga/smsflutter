@@ -191,6 +191,16 @@
   "settings": "Settings",
   "@settings": {
     "description": "Label for settings"
+  },
+
+  "helpText": "Video tutorial for English language",
+  "@helpText": {
+    "description": "label for helpText"
+  },
+
+  "tutorialLink": "https://firebasestorage.googleapis.com/v0/b/stockmarketsimulator-17d7d.appspot.com/o/EnTutorial.mp4?alt=media&token=06f3f993-72a2-46f5-8ca1-f7fa9220abd6",
+  "@tutorialLink": {
+    "description": "tutorial link"
   }
-  
+
 }

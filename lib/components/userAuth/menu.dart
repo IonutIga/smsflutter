@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smsflutter/components/userAuth/help.dart';
 import 'package:smsflutter/components/userAuth/login.dart';
 import 'package:smsflutter/components/userAuth/register.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -84,7 +85,16 @@ class _MenuState extends State<Menu> {
                           style: TextStyle(fontSize: 20)),
                     ),
                     RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return Help();
+                            },
+                          ),
+                        );
+                      },
                       child: Text(AppLocalizations.of(context).help,
                           style: TextStyle(fontSize: 20)),
                     ),
