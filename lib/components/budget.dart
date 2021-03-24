@@ -17,7 +17,7 @@ class Budget extends StatelessWidget {
           child: InkWell(
             onTap: () {
               if (Localizations.localeOf(context).languageCode == 'ro')
-                Utils.navigator(context: context, page: Settings());
+                Utils.navigator(context, Settings());
             },
             child: Text(
               budget != null

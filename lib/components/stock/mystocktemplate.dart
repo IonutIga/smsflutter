@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smsflutter/components/sellaction.dart';
+import 'package:smsflutter/components/utils.dart';
 import 'package:smsflutter/models/mystock.dart';
 import 'package:smsflutter/services/stocksFirestore.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class MyStockTemplate extends StatefulWidget {
+class MyStockTemplate extends StatelessWidget {
   final MyStock mystock;
 
   MyStockTemplate({this.mystock});
 
-  @override
-  _MyStockTemplateState createState() => _MyStockTemplateState();
-}
-
-class _MyStockTemplateState extends State<MyStockTemplate> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -22,10 +18,10 @@ class _MyStockTemplateState extends State<MyStockTemplate> {
         showDialog<AlertDialog>(
           context: context,
           child: StreamProvider.value(
-            value: StocksFirestore().getMyStock(widget.mystock.shortName),
+            value: StocksFirestore().getMyStock(mystock.shortName),
             child: AlertDialog(
-              title: Text(widget.mystock.shortName),
-              content: SellAction(myStock: widget.mystock),
+              title: Text(mystock.shortName),
+              content: SellAction(myStock: mystock),
               actions: <Widget>[
                 TextButton(
                     onPressed: () {
@@ -37,53 +33,17 @@ class _MyStockTemplateState extends State<MyStockTemplate> {
           ),
         );
       },
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: Image.network(widget.mystock.imageUri,
-                        width: 56, height: 56),
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          widget.mystock.shortName,
-                          style: Theme.of(context).textTheme.headline5,
-                        ),
-                        Text(
-                          widget.mystock.longName,
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          '${AppLocalizations.of(context).boughtFor}: ${widget.mystock.buyPrice.toStringAsFixed(2)}',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Text(
-                          '${AppLocalizations.of(context).quantity}: ${widget.mystock.quantity}',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+      child: Utils.getTemplateStock(
+        context,
+        imageUri: mystock.imageUri,
+        shortName: mystock.shortName,
+        longName: mystock.longName,
+        labelOne: Utils.getColonLabels(
+            AppLocalizations.of(context).boughtFor,
+            mystock.buyPrice.toStringAsFixed(2),
+            Theme.of(context).textTheme.headline6),
+        labelTwo: Utils.getColonLabels(AppLocalizations.of(context).quantity,
+            mystock.quantity.toString(), Theme.of(context).textTheme.headline6),
       ),
     );
   }

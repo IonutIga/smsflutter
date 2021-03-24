@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smsflutter/components/mystockchart.dart';
 import 'package:smsflutter/components/userAuth/menu.dart';
+import 'package:smsflutter/components/utils.dart';
 import 'package:smsflutter/services/auth.dart';
 import 'package:smsflutter/services/stocksFirestore.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -38,13 +39,15 @@ class _ProfileState extends State<Profile> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text(
-                                  '${AppLocalizations.of(context).name}: ${Auth.localUser.name}',
-                                  style: Theme.of(context).textTheme.headline4),
+                              Utils.getColonLabels(
+                                  AppLocalizations.of(context).name,
+                                  Auth.localUser.name,
+                                  Theme.of(context).textTheme.headline4),
                               SizedBox(height: 8),
-                              Text(
-                                  '${AppLocalizations.of(context).email}: ${Auth.localUser.email}',
-                                  style: Theme.of(context).textTheme.headline4),
+                              Utils.getColonLabels(
+                                  AppLocalizations.of(context).email,
+                                  Auth.localUser.email,
+                                  Theme.of(context).textTheme.headline4),
                             ],
                           ),
                         ],

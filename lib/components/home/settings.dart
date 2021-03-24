@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:smsflutter/components/home/navpage.dart';
+import 'package:smsflutter/components/utils.dart';
 import 'package:smsflutter/models/currency.dart';
 
 class Settings extends StatefulWidget {
@@ -53,12 +54,10 @@ class _SettingsState extends State<Settings> {
                 });
               },
             ),
-            Text(
-              _currency == null
-                  ? ''
-                  : ' Rata actuală de conversie EUR-RON: ${_currency.toStringAsFixed(2)}',
-              style: Theme.of(context).textTheme.headline5,
-            ),
+            Utils.getColonLabels(
+                "Rata actuală de conversie EUR-RON",
+                _currency?.toStringAsFixed(2),
+                Theme.of(context).textTheme.headline5),
             SizedBox(
               height: 8,
             ),

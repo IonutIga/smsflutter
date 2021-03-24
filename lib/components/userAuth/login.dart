@@ -91,8 +91,7 @@ class _LoginState extends State<Login> {
                                           _email, _password);
 
                                       if (result != null) {
-                                        Utils.navigator(
-                                            context: context, page: NavPage());
+                                        Utils.navigator(context, NavPage());
                                         setState(
                                           () {
                                             _isLoading = false;

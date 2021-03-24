@@ -122,8 +122,7 @@ class _RegisterState extends State<Register> {
                                         setState(() {
                                           _isLoading = false;
                                         });
-                                        Utils.navigator(
-                                            context: context, page: NavPage());
+                                        Utils.navigator(context, NavPage());
                                       } else
                                         setState(() {
                                           _isLoading = false;

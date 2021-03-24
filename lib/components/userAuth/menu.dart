@@ -47,7 +47,7 @@ class _MenuState extends State<Menu> {
                 children: [
                   RaisedButton(
                     onPressed: () {
-                      Utils.navigator(context: context, page: Register());
+                      Utils.navigator(context, Register());
                     },
                     child: Text(
                       AppLocalizations.of(context).register,
@@ -56,14 +56,14 @@ class _MenuState extends State<Menu> {
                   ),
                   RaisedButton(
                     onPressed: () {
-                      Utils.navigator(context: context, page: Login());
+                      Utils.navigator(context, Login());
                     },
                     child: Text(AppLocalizations.of(context).login,
                         style: TextStyle(fontSize: 20)),
                   ),
                   RaisedButton(
                     onPressed: () {
-                      Utils.navigator(context: context, page: Help());
+                      Utils.navigator(context, Help());
                     },
                     child: Text(AppLocalizations.of(context).help,
                         style: TextStyle(fontSize: 20)),

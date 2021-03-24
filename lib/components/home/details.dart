@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smsflutter/components/loading.dart';
+import 'package:smsflutter/components/utils.dart';
 import 'package:smsflutter/models/stock.dart';
 import 'package:smsflutter/services/stocksFirestore.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -20,6 +21,8 @@ class _DetailsState extends State<Details> {
   Widget build(BuildContext context) {
     Color statisticColor =
         num.tryParse(widget.stock.statistic) >= 0 ? Colors.green : Colors.red;
+    double _maxBudget =
+        (StocksFirestore.userBudget / widget.stock.nowPrice).roundToDouble();
     return _isLoading
         ? Loading()
         : StreamProvider<num>.value(
@@ -63,126 +66,23 @@ class _DetailsState extends State<Details> {
                       Row(
                         children: <Widget>[
                           Expanded(
-                            child: Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 4.0),
-                                      child: Text(
-                                          '${AppLocalizations.of(context).current}:',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline4
-                                              .copyWith(
-                                                  fontWeight: FontWeight.bold)),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 4.0),
-                                      child: Text(
-                                        widget.stock.nowPrice
-                                            .toStringAsFixed(2),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline4,
-                                      ),
-                                    ),
-                                    Text(
-                                      '${AppLocalizations.of(context).currency}',
-                                      style:
-                                          Theme.of(context).textTheme.headline4,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            child: Utils.getDetailsCard(
+                                context,
+                                AppLocalizations.of(context).current,
+                                widget.stock.nowPrice),
                           ),
                           Expanded(
-                            child: Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 4.0),
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 4.0),
-                                        child: Text(
-                                          '${AppLocalizations.of(context).previous}:',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline4
-                                              .copyWith(
-                                                  fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 4.0),
-                                      child: Text(
-                                        widget.stock.oldPrice
-                                            .toStringAsFixed(2),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline4,
-                                      ),
-                                    ),
-                                    Text(
-                                        '${AppLocalizations.of(context).currency}',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline4),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            child: Utils.getDetailsCard(
+                                context,
+                                AppLocalizations.of(context).previous,
+                                widget.stock.oldPrice),
                           ),
                           Expanded(
-                            child: Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 4.0),
-                                      child: Text(
-                                        '${AppLocalizations.of(context).pricediff}:',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline4
-                                            .copyWith(
-                                                fontWeight: FontWeight.bold,
-                                                color: statisticColor),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 4.0),
-                                      child: Text(
-                                          widget.stock.statistic.toString(),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline4
-                                              .copyWith(color: statisticColor)),
-                                    ),
-                                    Text(
-                                      '${AppLocalizations.of(context).currency}',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline4
-                                          .copyWith(color: statisticColor),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            child: Utils.getDetailsCard(
+                                context,
+                                AppLocalizations.of(context).current,
+                                widget.stock.nowPrice,
+                                color: statisticColor),
                           ),
                         ],
                       ),
@@ -192,9 +92,7 @@ class _DetailsState extends State<Details> {
                             child: Slider(
                               value: _quantity,
                               min: 0,
-                              max: (StocksFirestore.userBudget /
-                                      widget.stock.nowPrice)
-                                  .roundToDouble(),
+                              max: _maxBudget,
                               onChanged: (value) {
                                 setState(() {
                                   _quantity = value;
@@ -226,14 +124,16 @@ class _DetailsState extends State<Details> {
                                 child: AlertDialog(
                                   title:
                                       Text(AppLocalizations.of(context).alert),
-                                  content: Text(AppLocalizations.of(context)
-                                      .alertBudgetMsg),
+                                  content: Text(
+                                    AppLocalizations.of(context).alertBudgetMsg,
+                                  ),
                                   actions: <Widget>[
                                     TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text('OK'))
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text('OK'),
+                                    )
                                   ],
                                 ),
                               );

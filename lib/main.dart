@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           textTheme: Utils.textTheme,
           sliderTheme: Utils.sliderTheme,
-          buttonTheme: Utils.getButtonTheme(context: context),
+          buttonTheme: Utils.getButtonTheme(context),
           primaryColor: Utils.primaryColor,
         ),
       ),
