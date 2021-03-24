@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:smsflutter/components/utils.dart';
 
 import 'home/settings.dart';
 
@@ -16,14 +17,7 @@ class Budget extends StatelessWidget {
           child: InkWell(
             onTap: () {
               if (Localizations.localeOf(context).languageCode == 'ro')
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Settings();
-                    },
-                  ),
-                );
+                Utils.navigator(context: context, page: Settings());
             },
             child: Text(
               budget != null

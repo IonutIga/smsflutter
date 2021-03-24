@@ -26,8 +26,8 @@ class _SellActionState extends State<SellAction> {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                '${AppLocalizations.of(context).boughtFor}: ${widget.myStock.buyPrice.toString()} ${AppLocalizations.of(context).currency}',
-                style: TextStyle(fontSize: 18),
+                '${AppLocalizations.of(context).boughtFor}: ${widget.myStock.buyPrice?.toStringAsFixed(2)} ${AppLocalizations.of(context).currency}',
+                style: Theme.of(context).textTheme.headline6,
               ),
             ),
             Align(
@@ -35,8 +35,11 @@ class _SellActionState extends State<SellAction> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: Text(
-                  '${AppLocalizations.of(context).current}: ${currentPrice.toString()} ${AppLocalizations.of(context).currency}',
-                  style: TextStyle(fontSize: 18, color: Colors.green),
+                  '${AppLocalizations.of(context).current}: ${currentPrice?.toStringAsFixed(2)} ${AppLocalizations.of(context).currency}',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      .copyWith(color: Colors.green),
                 ),
               ),
             ),
@@ -59,12 +62,12 @@ class _SellActionState extends State<SellAction> {
             ),
             Text(
               _quantity.round().toString(),
-              style: TextStyle(fontSize: 20),
+              style: Theme.of(context).textTheme.headline4,
               textAlign: TextAlign.start,
             ),
             Text(
               AppLocalizations.of(context).stocks,
-              style: TextStyle(fontSize: 20),
+              style: Theme.of(context).textTheme.headline4,
               textAlign: TextAlign.end,
             ),
           ],

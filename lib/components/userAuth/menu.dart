@@ -4,6 +4,7 @@ import 'package:smsflutter/components/userAuth/help.dart';
 import 'package:smsflutter/components/userAuth/login.dart';
 import 'package:smsflutter/components/userAuth/register.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:smsflutter/components/utils.dart';
 
 class Menu extends StatefulWidget {
   @override
@@ -42,64 +43,32 @@ class _MenuState extends State<Menu> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              ButtonTheme(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)),
-                buttonColor: Color.fromARGB(255, 45, 189, 196),
-                colorScheme: Theme.of(context)
-                    .colorScheme
-                    .copyWith(secondary: Colors.white),
-                textTheme: ButtonTextTheme.accent,
-                minWidth: 400,
-                height: 40,
-                child: Column(
-                  children: [
-                    RaisedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return Register();
-                            },
-                          ),
-                        );
-                      },
-                      child: Text(
-                        AppLocalizations.of(context).register,
-                        style: TextStyle(fontSize: 20),
-                      ),
+              Column(
+                children: [
+                  RaisedButton(
+                    onPressed: () {
+                      Utils.navigator(context: context, page: Register());
+                    },
+                    child: Text(
+                      AppLocalizations.of(context).register,
+                      style: TextStyle(fontSize: 20),
                     ),
-                    RaisedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return Login();
-                            },
-                          ),
-                        );
-                      },
-                      child: Text(AppLocalizations.of(context).login,
-                          style: TextStyle(fontSize: 20)),
-                    ),
-                    RaisedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return Help();
-                            },
-                          ),
-                        );
-                      },
-                      child: Text(AppLocalizations.of(context).help,
-                          style: TextStyle(fontSize: 20)),
-                    ),
-                  ],
-                ),
+                  ),
+                  RaisedButton(
+                    onPressed: () {
+                      Utils.navigator(context: context, page: Login());
+                    },
+                    child: Text(AppLocalizations.of(context).login,
+                        style: TextStyle(fontSize: 20)),
+                  ),
+                  RaisedButton(
+                    onPressed: () {
+                      Utils.navigator(context: context, page: Help());
+                    },
+                    child: Text(AppLocalizations.of(context).help,
+                        style: TextStyle(fontSize: 20)),
+                  ),
+                ],
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -109,7 +78,7 @@ class _MenuState extends State<Menu> {
                     Icon(Icons.copyright),
                     Text(
                       AppLocalizations.of(context).allRightsReserved,
-                      style: TextStyle(fontSize: 16),
+                      style: Theme.of(context).textTheme.headline6,
                     ),
                   ],
                 ),

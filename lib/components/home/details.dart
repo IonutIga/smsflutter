@@ -46,12 +46,14 @@ class _DetailsState extends State<Details> {
                               children: <Widget>[
                                 Text(
                                   widget.stock.shortName,
-                                  style: TextStyle(fontSize: 32),
+                                  style: Theme.of(context).textTheme.headline1,
                                 ),
                                 Text(
                                   widget.stock.longName,
-                                  style: TextStyle(
-                                      color: Colors.grey, fontSize: 20),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline4
+                                      .copyWith(color: Colors.grey),
                                 ),
                               ],
                             ),
@@ -70,11 +72,12 @@ class _DetailsState extends State<Details> {
                                       padding:
                                           const EdgeInsets.only(bottom: 4.0),
                                       child: Text(
-                                        '${AppLocalizations.of(context).current}:',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
-                                      ),
+                                          '${AppLocalizations.of(context).current}:',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline4
+                                              .copyWith(
+                                                  fontWeight: FontWeight.bold)),
                                     ),
                                     Padding(
                                       padding:
@@ -82,12 +85,16 @@ class _DetailsState extends State<Details> {
                                       child: Text(
                                         widget.stock.nowPrice
                                             .toStringAsFixed(2),
-                                        style: TextStyle(fontSize: 20),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline4,
                                       ),
                                     ),
                                     Text(
-                                        '${AppLocalizations.of(context).currency}',
-                                        style: TextStyle(fontSize: 20)),
+                                      '${AppLocalizations.of(context).currency}',
+                                      style:
+                                          Theme.of(context).textTheme.headline4,
+                                    ),
                                   ],
                                 ),
                               ),
@@ -107,9 +114,11 @@ class _DetailsState extends State<Details> {
                                             const EdgeInsets.only(bottom: 4.0),
                                         child: Text(
                                           '${AppLocalizations.of(context).previous}:',
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline4
+                                              .copyWith(
+                                                  fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                     ),
@@ -119,12 +128,16 @@ class _DetailsState extends State<Details> {
                                       child: Text(
                                         widget.stock.oldPrice
                                             .toStringAsFixed(2),
-                                        style: TextStyle(fontSize: 20),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline4,
                                       ),
                                     ),
                                     Text(
                                         '${AppLocalizations.of(context).currency}',
-                                        style: TextStyle(fontSize: 20)),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline4),
                                   ],
                                 ),
                               ),
@@ -141,27 +154,31 @@ class _DetailsState extends State<Details> {
                                           const EdgeInsets.only(bottom: 4.0),
                                       child: Text(
                                         '${AppLocalizations.of(context).pricediff}:',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: statisticColor),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline4
+                                            .copyWith(
+                                                fontWeight: FontWeight.bold,
+                                                color: statisticColor),
                                       ),
                                     ),
                                     Padding(
                                       padding:
                                           const EdgeInsets.only(bottom: 4.0),
                                       child: Text(
-                                        widget.stock.statistic.toString(),
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            color: statisticColor),
-                                      ),
+                                          widget.stock.statistic.toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline4
+                                              .copyWith(color: statisticColor)),
                                     ),
                                     Text(
-                                        '${AppLocalizations.of(context).currency}',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            color: statisticColor)),
+                                      '${AppLocalizations.of(context).currency}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline4
+                                          .copyWith(color: statisticColor),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -173,7 +190,6 @@ class _DetailsState extends State<Details> {
                         children: <Widget>[
                           Expanded(
                             child: Slider(
-                              activeColor: Color.fromARGB(255, 45, 189, 196),
                               value: _quantity,
                               min: 0,
                               max: (StocksFirestore.userBudget /
@@ -188,62 +204,30 @@ class _DetailsState extends State<Details> {
                           ),
                           Text(
                             _quantity.round().toString(),
-                            style: TextStyle(fontSize: 20),
+                            style: Theme.of(context).textTheme.headline4,
                             textAlign: TextAlign.start,
                           ),
                           Text(
                             AppLocalizations.of(context).stocks,
-                            style: TextStyle(fontSize: 20),
+                            style: Theme.of(context).textTheme.headline4,
                             textAlign: TextAlign.end,
                           ),
                         ],
                       ),
-                      ButtonTheme(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        buttonColor: Color.fromARGB(255, 45, 189, 196),
-                        colorScheme: Theme.of(context)
-                            .colorScheme
-                            .copyWith(secondary: Colors.white),
-                        textTheme: ButtonTextTheme.accent,
-                        minWidth: 400,
-                        height: 40,
-                        child: RaisedButton(
-                          onPressed: () async {
-                            if (_quantity != 0) {
-                              try {
-                                await StocksFirestore().insertMyStock(
-                                    stock: widget.stock, quantity: _quantity);
-                              } catch (e) {
-                                return showDialog<AlertDialog>(
-                                  context: context,
-                                  child: AlertDialog(
-                                    title: Text(
-                                        AppLocalizations.of(context).alert),
-                                    content: Text(AppLocalizations.of(context)
-                                        .alertBudgetMsg),
-                                    actions: <Widget>[
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text('OK'))
-                                    ],
-                                  ),
-                                );
-                              }
-                              setState(() {
-                                _isLoading = true;
-                              });
-                              Navigator.pop(context);
-                            } else {
+                      RaisedButton(
+                        onPressed: () async {
+                          if (_quantity != 0) {
+                            try {
+                              await StocksFirestore().insertMyStock(
+                                  stock: widget.stock, quantity: _quantity);
+                            } catch (e) {
                               return showDialog<AlertDialog>(
                                 context: context,
                                 child: AlertDialog(
                                   title:
                                       Text(AppLocalizations.of(context).alert),
-                                  content: Text(
-                                      AppLocalizations.of(context).alertQtyMsg),
+                                  content: Text(AppLocalizations.of(context)
+                                      .alertBudgetMsg),
                                   actions: <Widget>[
                                     TextButton(
                                         onPressed: () {
@@ -254,11 +238,31 @@ class _DetailsState extends State<Details> {
                                 ),
                               );
                             }
-                          },
-                          child: Text(
-                            AppLocalizations.of(context).buy,
-                            style: TextStyle(fontSize: 20),
-                          ),
+                            setState(() {
+                              _isLoading = true;
+                            });
+                            Navigator.pop(context);
+                          } else {
+                            return showDialog<AlertDialog>(
+                              context: context,
+                              child: AlertDialog(
+                                title: Text(AppLocalizations.of(context).alert),
+                                content: Text(
+                                    AppLocalizations.of(context).alertQtyMsg),
+                                actions: <Widget>[
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text('OK'))
+                                ],
+                              ),
+                            );
+                          }
+                        },
+                        child: Text(
+                          AppLocalizations.of(context).buy,
+                          style: TextStyle(fontSize: 20),
                         ),
                       ),
                       Padding(
@@ -266,11 +270,8 @@ class _DetailsState extends State<Details> {
                         child: Align(
                           alignment: Alignment.bottomLeft,
                           child: Text(
-                            AppLocalizations.of(context).companyDescription,
-                            style: TextStyle(
-                              fontSize: 28,
-                            ),
-                          ),
+                              AppLocalizations.of(context).companyDescription,
+                              style: Theme.of(context).textTheme.headline2),
                         ),
                       ),
                       SizedBox(
@@ -278,7 +279,7 @@ class _DetailsState extends State<Details> {
                         child: SingleChildScrollView(
                           child: Text(
                             widget.stock.companyDescription,
-                            style: TextStyle(fontSize: 20),
+                            style: Theme.of(context).textTheme.headline4,
                           ),
                         ),
                       )

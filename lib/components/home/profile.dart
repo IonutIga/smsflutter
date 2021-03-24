@@ -30,7 +30,7 @@ class _ProfileState extends State<Profile> {
                     children: [
                       Text(
                         AppLocalizations.of(context).profile,
-                        style: TextStyle(fontSize: 22),
+                        style: Theme.of(context).textTheme.headline3,
                       ),
                       SizedBox(height: 8),
                       Row(
@@ -40,11 +40,11 @@ class _ProfileState extends State<Profile> {
                             children: <Widget>[
                               Text(
                                   '${AppLocalizations.of(context).name}: ${Auth.localUser.name}',
-                                  style: TextStyle(fontSize: 20)),
+                                  style: Theme.of(context).textTheme.headline4),
                               SizedBox(height: 8),
                               Text(
                                   '${AppLocalizations.of(context).email}: ${Auth.localUser.email}',
-                                  style: TextStyle(fontSize: 20)),
+                                  style: Theme.of(context).textTheme.headline4),
                             ],
                           ),
                         ],
@@ -56,33 +56,22 @@ class _ProfileState extends State<Profile> {
               SizedBox(height: 8),
               Text(
                 AppLocalizations.of(context).statistics,
-                style: TextStyle(fontSize: 22),
+                style: Theme.of(context).textTheme.headline3,
               ),
               SizedBox(height: 8),
               MyStockChart(),
-              ButtonTheme(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)),
-                buttonColor: Color.fromARGB(255, 45, 189, 196),
-                colorScheme: Theme.of(context)
-                    .colorScheme
-                    .copyWith(secondary: Colors.white),
-                textTheme: ButtonTextTheme.accent,
-                minWidth: 400,
-                height: 40,
-                child: RaisedButton(
-                    child: Text(
-                      AppLocalizations.of(context).logout,
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    onPressed: () {
-                      _auth.signOut();
-                      Navigator.pushAndRemoveUntil(context,
-                          MaterialPageRoute(builder: (context) {
-                        return Menu();
-                      }), (route) => false);
-                    }),
-              )
+              RaisedButton(
+                  child: Text(
+                    AppLocalizations.of(context).logout,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {
+                    _auth.signOut();
+                    Navigator.pushAndRemoveUntil(context,
+                        MaterialPageRoute(builder: (context) {
+                      return Menu();
+                    }), (route) => false);
+                  })
             ],
           ),
         ),

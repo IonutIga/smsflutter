@@ -57,33 +57,22 @@ class _SettingsState extends State<Settings> {
               _currency == null
                   ? ''
                   : ' Rata actuală de conversie EUR-RON: ${_currency.toStringAsFixed(2)}',
-              style: TextStyle(fontSize: 18),
+              style: Theme.of(context).textTheme.headline5,
             ),
             SizedBox(
               height: 8,
             ),
-            ButtonTheme(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)),
-              buttonColor: Color.fromARGB(255, 45, 189, 196),
-              colorScheme: Theme.of(context)
-                  .colorScheme
-                  .copyWith(secondary: Colors.white),
-              textTheme: ButtonTextTheme.accent,
-              minWidth: 400,
-              height: 40,
-              child: RaisedButton(
-                onPressed: () async {
-                  await prefSet(_currency);
-                  Navigator.pushAndRemoveUntil(context,
-                      MaterialPageRoute(builder: (context) {
-                    return NavPage();
-                  }), (route) => false);
-                },
-                child: Text(
-                  'Salvează',
-                  style: TextStyle(fontSize: 18),
-                ),
+            RaisedButton(
+              onPressed: () async {
+                await prefSet(_currency);
+                Navigator.pushAndRemoveUntil(context,
+                    MaterialPageRoute(builder: (context) {
+                  return NavPage();
+                }), (route) => false);
+              },
+              child: Text(
+                'Salvează',
+                style: TextStyle(fontSize: 18),
               ),
             ),
           ],

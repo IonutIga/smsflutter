@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:smsflutter/components/authlistener.dart';
+import 'package:smsflutter/components/utils.dart';
 import 'package:smsflutter/models/user.dart';
 import 'package:smsflutter/services/auth.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -28,14 +29,10 @@ class MyApp extends StatelessWidget {
         ],
         home: AuthListener(),
         theme: ThemeData(
-          buttonColor: Color.fromARGB(255, 45, 189, 196),
-          buttonTheme: ButtonThemeData(
-              buttonColor: Color.fromARGB(255, 45, 189, 196),
-              colorScheme: Theme.of(context)
-                  .colorScheme
-                  .copyWith(secondary: Colors.white),
-              textTheme: ButtonTextTheme.accent),
-          primaryColor: Color.fromARGB(255, 228, 68, 58),
+          textTheme: Utils.textTheme,
+          sliderTheme: Utils.sliderTheme,
+          buttonTheme: Utils.getButtonTheme(context: context),
+          primaryColor: Utils.primaryColor,
         ),
       ),
     );

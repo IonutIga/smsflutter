@@ -55,7 +55,7 @@ class _MyStockTemplateState extends State<MyStockTemplate> {
                       children: <Widget>[
                         Text(
                           widget.mystock.shortName,
-                          style: TextStyle(fontSize: 18),
+                          style: Theme.of(context).textTheme.headline5,
                         ),
                         Text(
                           widget.mystock.longName,

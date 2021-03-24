@@ -41,12 +41,8 @@ class _HelpState extends State<Help> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: <Widget>[
-              Text(
-                AppLocalizations.of(context).helpText,
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
+              Text(AppLocalizations.of(context).helpText,
+                  style: Theme.of(context).textTheme.headline4),
               SizedBox(
                 height: 8,
               ),

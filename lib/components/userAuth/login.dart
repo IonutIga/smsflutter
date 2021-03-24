@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:smsflutter/components/home/navpage.dart';
 import 'package:smsflutter/components/loading.dart';
+import 'package:smsflutter/components/utils.dart';
 import 'package:smsflutter/services/auth.dart';
 
 class Login extends StatefulWidget {
@@ -38,7 +39,7 @@ class _LoginState extends State<Login> {
                         children: <Widget>[
                           Text(
                             AppLocalizations.of(context).letsTrade,
-                            style: TextStyle(fontSize: 32),
+                            style: Theme.of(context).textTheme.headline1,
                           ),
                           SizedBox(
                             height: 64,
@@ -79,8 +80,6 @@ class _LoginState extends State<Login> {
                               height: 40,
                               width: 350,
                               child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8.0)),
                                 onPressed: () async {
                                   // validate the form based on its state
                                   if (_formId.currentState.validate()) {
@@ -92,14 +91,8 @@ class _LoginState extends State<Login> {
                                           _email, _password);
 
                                       if (result != null) {
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) {
-                                              return NavPage();
-                                            },
-                                          ),
-                                        );
+                                        Utils.navigator(
+                                            context: context, page: NavPage());
                                         setState(
                                           () {
                                             _isLoading = false;
@@ -151,7 +144,7 @@ class _LoginState extends State<Login> {
                               Icon(Icons.copyright),
                               Text(
                                 AppLocalizations.of(context).allRightsReserved,
-                                style: TextStyle(fontSize: 16),
+                                style: Theme.of(context).textTheme.headline6,
                               ),
                             ],
                           ),

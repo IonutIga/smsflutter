@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smsflutter/components/home/details.dart';
+import 'package:smsflutter/components/utils.dart';
 import 'package:smsflutter/models/stock.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -12,9 +13,11 @@ class StockTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return Details(stock: stock);
-        }));
+        Utils.navigator(
+            context: context,
+            page: Details(
+              stock: stock,
+            ));
       },
       child: Card(
         child: Padding(
@@ -33,7 +36,7 @@ class StockTemplate extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           stock.shortName,
-                          style: TextStyle(fontSize: 18),
+                          style: Theme.of(context).textTheme.headline5,
                         ),
                         Text(
                           stock.longName,
@@ -48,11 +51,11 @@ class StockTemplate extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           '${AppLocalizations.of(context).current}: ${stock.nowPrice.toStringAsFixed(2)}',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.headline6,
                         ),
                         Text(
                           '${AppLocalizations.of(context).previous}: ${stock.oldPrice.toStringAsFixed(2)}',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.headline6,
                         ),
                       ],
                     ),

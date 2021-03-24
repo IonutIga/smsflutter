@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:smsflutter/components/home/navpage.dart';
 import 'package:smsflutter/components/loading.dart';
+import 'package:smsflutter/components/utils.dart';
 import 'package:smsflutter/services/auth.dart';
 
 class Register extends StatefulWidget {
@@ -41,7 +42,7 @@ class _RegisterState extends State<Register> {
                         children: <Widget>[
                           Text(
                             AppLocalizations.of(context).joinUs,
-                            style: TextStyle(fontSize: 32),
+                            style: Theme.of(context).textTheme.headline1,
                           ),
                           SizedBox(
                             height: 64,
@@ -107,8 +108,6 @@ class _RegisterState extends State<Register> {
                               height: 40,
                               width: 350,
                               child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8.0)),
                                 onPressed: () async {
                                   // validate the form based on its state
                                   if (_formId.currentState.validate()) {
@@ -123,14 +122,8 @@ class _RegisterState extends State<Register> {
                                         setState(() {
                                           _isLoading = false;
                                         });
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) {
-                                              return NavPage();
-                                            },
-                                          ),
-                                        );
+                                        Utils.navigator(
+                                            context: context, page: NavPage());
                                       } else
                                         setState(() {
                                           _isLoading = false;
@@ -175,7 +168,7 @@ class _RegisterState extends State<Register> {
                               Icon(Icons.copyright),
                               Text(
                                 AppLocalizations.of(context).allRightsReserved,
-                                style: TextStyle(fontSize: 16),
+                                style: Theme.of(context).textTheme.headline6,
                               ),
                             ],
                           ),

@@ -26,9 +26,7 @@ class _MyStocksListState extends State<MyStocksList> {
             : Center(
                 child: Text(
                   AppLocalizations.of(context).noStocksFound,
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
+                  style: Theme.of(context).textTheme.headline4,
                   textAlign: TextAlign.center,
                 ),
               );
