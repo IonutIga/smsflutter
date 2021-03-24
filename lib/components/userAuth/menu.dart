@@ -38,8 +38,7 @@ class _MenuState extends State<Menu> {
                 padding: const EdgeInsets.only(bottom: 88.0),
                 child: Text(
                   'Stock Market Simulator',
-                  style: TextStyle(
-                      fontSize: 72, color: Color.fromARGB(255, 228, 68, 58)),
+                  style: TextStyle(fontSize: 72, color: Utils.primaryColor),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -51,7 +50,7 @@ class _MenuState extends State<Menu> {
                     },
                     child: Text(
                       AppLocalizations.of(context).register,
-                      style: TextStyle(fontSize: 20),
+                      style: Theme.of(context).textTheme.headline4,
                     ),
                   ),
                   RaisedButton(
@@ -59,29 +58,20 @@ class _MenuState extends State<Menu> {
                       Utils.navigator(context, Login());
                     },
                     child: Text(AppLocalizations.of(context).login,
-                        style: TextStyle(fontSize: 20)),
+                        style: Theme.of(context).textTheme.headline4),
                   ),
                   RaisedButton(
                     onPressed: () {
                       Utils.navigator(context, Help());
                     },
                     child: Text(AppLocalizations.of(context).help,
-                        style: TextStyle(fontSize: 20)),
+                        style: Theme.of(context).textTheme.headline4),
                   ),
                 ],
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.copyright),
-                    Text(
-                      AppLocalizations.of(context).allRightsReserved,
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ],
-                ),
+                child: Utils.getAllRightsReserved(context),
               )
             ],
           ),

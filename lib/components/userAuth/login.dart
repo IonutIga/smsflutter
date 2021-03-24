@@ -137,16 +137,7 @@ class _LoginState extends State<Login> {
                             ),
                           ),
                           SizedBox(height: 80),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.copyright),
-                              Text(
-                                AppLocalizations.of(context).allRightsReserved,
-                                style: Theme.of(context).textTheme.headline6,
-                              ),
-                            ],
-                          ),
+                          Utils.getAllRightsReserved(context),
                         ],
                       ),
                     ),

@@ -25,6 +25,19 @@ class Utils {
     activeTrackColor: Utils.secondaryColor,
   );
 
+  static Row getAllRightsReserved(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(Icons.copyright),
+        Text(
+          AppLocalizations.of(context).allRightsReserved,
+          style: Theme.of(context).textTheme.headline6,
+        ),
+      ],
+    );
+  }
+
 // color optional cu val default negru
   static Card getDetailsCard(BuildContext context, String label, num value,
       {Color color: Colors.black}) {

@@ -28,7 +28,7 @@ class _SellActionState extends State<SellAction> {
               alignment: Alignment.centerLeft,
               child: Utils.getColonLabels(
                   AppLocalizations.of(context).boughtFor,
-                  widget.myStock.buyPrice?.toStringAsFixed(2) +
+                  widget.myStock.buyPrice.toStringAsFixed(2) +
                       AppLocalizations.of(context).currency,
                   Theme.of(context).textTheme.headline6),
             ),
@@ -38,8 +38,10 @@ class _SellActionState extends State<SellAction> {
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: Utils.getColonLabels(
                     AppLocalizations.of(context).current,
-                    currentPrice?.toStringAsFixed(2) +
-                        AppLocalizations.of(context).currency,
+                    currentPrice != null
+                        ? currentPrice.toStringAsFixed(2) +
+                            AppLocalizations.of(context).currency
+                        : " ",
                     Theme.of(context)
                         .textTheme
                         .headline6
