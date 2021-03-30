@@ -201,6 +201,11 @@
   "tutorialLink": "https://firebasestorage.googleapis.com/v0/b/stockmarketsimulator-17d7d.appspot.com/o/EnTutorial.mp4?alt=media&token=06f3f993-72a2-46f5-8ca1-f7fa9220abd6",
   "@tutorialLink": {
     "description": "tutorial link"
+  },
+
+  "generalErrorMsg": "Something went wrong!",
+  "@generalErrorMsg": {
+    "description": "label for generalErrorMsg"
   }
 
 }

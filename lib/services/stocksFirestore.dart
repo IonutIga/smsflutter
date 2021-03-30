@@ -6,40 +6,51 @@ import 'package:smsflutter/models/mystockgroup.dart';
 import 'package:smsflutter/models/stock.dart';
 import 'package:smsflutter/services/auth.dart';
 
+// Class used to communicate with Firestore database
 class StocksFirestore {
   final CollectionReference stocks = Firestore.instance.collection('stocks');
   final CollectionReference myStocks =
       Firestore.instance.collection('mystocks');
   final CollectionReference budgets = Firestore.instance.collection('budgets');
+  // Shared by all instances in order to keep the same value across the app
   static num userBudget;
+  // Needed to update the right user's budget
   static String _budgetID;
+  // Needed to initialize the currency value with the one saved as preferences
   Currency _currencyDummy = Currency();
 
+  // Get the current logged in user's budget as stream
   Stream<num> get budget {
     Query query = budgets.where('userid', isEqualTo: Auth().userID);
     return query.snapshots().map(_toBudget);
   }
 
+  // Get the list of available stocks on the market as stream
   Stream<List<Stock>> get stocksList {
     return stocks.snapshots().map(_toStock);
   }
 
+  // Get the list of current logged in user owned stocks as stream
   Stream<List<MyStock>> get myStockList {
     Query query = myStocks.where('userid', isEqualTo: Auth().userID);
     return query.snapshots().map(_toMyStock);
   }
 
+  // Get a specific stock price to show the current price on sell option
   Stream<num> getMyStock(String myStockShortName) {
     Query query = stocks.where('shortname', isEqualTo: myStockShortName);
     return query.snapshots().map(_toNum);
   }
 
+  // Get the list of current logged in user owned stocks as stream, used for statistics
   Stream<List<MyStockGroup>> getMyStockGroup() {
     Query query = myStocks.where('userid', isEqualTo: Auth().userID);
     return query.snapshots().map(_toGroup);
   }
 
+  // Insert a stock into the list of current looged in user; buy process
   Future insertMyStock({Stock stock, num quantity}) async {
+    // Only integer values allowed, slider returns double
     quantity = quantity.round();
     if (Currency.lang != 'ro') {
       if (userBudget - stock.nowPrice.toDouble() * quantity >= 0)
@@ -47,7 +58,9 @@ class StocksFirestore {
             {'budget': userBudget - stock.nowPrice.toDouble() * quantity});
       else
         throw Exception();
-    } else {
+    }
+    // If Ro is the language, convert the budget and the nowPrice to euro
+    else {
       if (userBudget / Currency.currency -
               stock.nowPrice.toDouble() / Currency.currency * quantity >=
           0)
@@ -58,6 +71,9 @@ class StocksFirestore {
       else
         throw Exception();
     }
+    // Exceptions are thrown because the process should end if the user doesn't have enough money
+
+    // Find the stock to add to the same group or insert a new one if none exists
     Query query = myStocks
         .where('userid', isEqualTo: Auth().userID)
         .where('buyprice',
@@ -65,6 +81,8 @@ class StocksFirestore {
                 ? stock.nowPrice
                 : stock.nowPrice / Currency.currency)
         .where('shortname', isEqualTo: stock.shortName);
+
+    // If Ro, the RonRate matters for grouping
     if (Currency.lang == 'ro')
       query = query.where('ronrate', isEqualTo: Currency.currency);
     QuerySnapshot snapshot = await query.getDocuments();
@@ -88,24 +106,28 @@ class StocksFirestore {
       });
   }
 
+  // Used to update a specific stock owned by the current logged in user; sell process
   Future updateMyStock({MyStock myStock, num quantity}) async {
-    try {
-      quantity = quantity.round();
-      if (myStock.quantity == quantity)
-        await myStocks.document(myStock.myStockId).delete();
-      else
-        await myStocks
-            .document(myStock.myStockId)
-            .updateData({'quantity': myStock.quantity - quantity});
-      await budgets.document(_budgetID).updateData({
-        'budget': Currency.lang != 'ro'
-            ? userBudget + myStock.buyPrice.toDouble() * quantity
-            : userBudget / Currency.currency +
-                myStock.buyPrice.toDouble() / Currency.currency * quantity
-      });
-    } catch (e) {}
+    // Only integer values allowed, slider returns double
+    quantity = quantity.round();
+    // Delete if the users sells all of the specific actions
+    if (myStock.quantity == quantity)
+      await myStocks.document(myStock.myStockId).delete();
+    else
+      await myStocks
+          .document(myStock.myStockId)
+          .updateData({'quantity': myStock.quantity - quantity});
+
+    // Convert prices depending on the system language
+    await budgets.document(_budgetID).updateData({
+      'budget': Currency.lang != 'ro'
+          ? userBudget + myStock.buyPrice.toDouble() * quantity
+          : userBudget / Currency.currency +
+              myStock.buyPrice.toDouble() / Currency.currency * quantity
+    });
   }
 
+  // Method used for grouping actions in order to create the chart properly
   List<MyStockGroup> _toGroup(QuerySnapshot snapshot) {
     List<MyStockGroup> list = <MyStockGroup>[];
     List<MyStock> listMyStock = <MyStock>[];
@@ -121,6 +143,7 @@ class StocksFirestore {
           ronRate: doc.data['ronrate']));
     }
     for (var myStock in listMyStock) {
+      // Check if the group already exists
       MyStockGroup myStockGroup = list.firstWhere(
           (element) => element.name == myStock.shortName,
           orElse: () => null);
@@ -134,6 +157,8 @@ class StocksFirestore {
     return list;
   }
 
+  // Method used to convert each market stock received from the db
+  // Prices are changed ONLY inside the app, not inside the db
   List<Stock> _toStock(QuerySnapshot snapshot) {
     return snapshot.documents
         .map((doc) => Stock(
@@ -156,6 +181,8 @@ class StocksFirestore {
         .toList();
   }
 
+  // Method used to convert the nowPrice of a stock, used for showing the
+  // user the current price when sell process is started
   num _toNum(QuerySnapshot snapshot) {
     var doc = snapshot.documents.firstWhere(
         (element) => element.data['shortname'] != null,
@@ -166,6 +193,8 @@ class StocksFirestore {
       return 0;
   }
 
+  // Method used to convert each owned stock received from the db
+  // Prices are changed ONLY inside the app, not inside the db
   List<MyStock> _toMyStock(QuerySnapshot snapshot) {
     return snapshot.documents
         .map(
@@ -181,6 +210,8 @@ class StocksFirestore {
         .toList();
   }
 
+  // Method used to convert the budget received from the db
+  // Values are changed ONLY inside the app, not inside the db
   num _toBudget(QuerySnapshot snapshot) {
     var doc = snapshot.documents.firstWhere(
         (element) => element.data['budget'] >= 0,

@@ -6,6 +6,7 @@ import 'package:smsflutter/models/mystock.dart';
 import 'package:smsflutter/services/stocksFirestore.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+// Widget used to display an individual my stock
 class MyStockTemplate extends StatelessWidget {
   final MyStock mystock;
 
@@ -14,6 +15,7 @@ class MyStockTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      // Show dialog to enable sell option
       onTap: () {
         showDialog<AlertDialog>(
           context: context,
@@ -33,6 +35,7 @@ class MyStockTemplate extends StatelessWidget {
           ),
         );
       },
+      // Get the template from utils using data from the woned stock
       child: Utils.getTemplateStock(
         context,
         imageUri: mystock.imageUri,

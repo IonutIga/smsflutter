@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // Providing the user to the AuthListener child
     return StreamProvider<User>.value(
       value: Auth().user,
       child: MaterialApp(
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
           const Locale('ro', ''),
         ],
         home: AuthListener(),
+        // Setting general themes for different widgets
         theme: ThemeData(
           textTheme: Utils.textTheme,
           sliderTheme: Utils.sliderTheme,

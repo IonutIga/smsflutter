@@ -6,14 +6,17 @@ import 'package:smsflutter/components/utils.dart';
 
 import 'home/settings.dart';
 
+// Widget showing the user's budget
 class Budget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Get the budget
     final budget = Provider.of<num>(context);
     return Center(
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
+          // Handle event, enable settings page for Ro users
           child: InkWell(
             onTap: () {
               if (Localizations.localeOf(context).languageCode == 'ro')

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:video_player/video_player.dart';
 
+// Widget for the help page, show video tutorial based on system lang
 class Help extends StatefulWidget {
   @override
   _HelpState createState() => _HelpState();

@@ -6,6 +6,7 @@ import 'package:smsflutter/components/userAuth/register.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:smsflutter/components/utils.dart';
 
+// Widget for the menu screen
 class Menu extends StatefulWidget {
   @override
   _MenuState createState() => _MenuState();
@@ -18,6 +19,8 @@ class _MenuState extends State<Menu> {
     initPrefs();
   }
 
+  // Initialize preferences with a default value if not set
+  // User will reach this page at least once
   initPrefs() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     if (pref.getDouble('currency') == null) pref.setDouble('currency', 4.4);
@@ -32,6 +35,7 @@ class _MenuState extends State<Menu> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
+          // Main
           child: Column(
             children: <Widget>[
               Padding(
@@ -42,30 +46,35 @@ class _MenuState extends State<Menu> {
                   textAlign: TextAlign.center,
                 ),
               ),
+              // Register, Login, Help Buttons
               Column(
                 children: [
+                  // Register
                   RaisedButton(
                     onPressed: () {
                       Utils.navigator(context, Register());
                     },
                     child: Text(
                       AppLocalizations.of(context).register,
-                      style: Theme.of(context).textTheme.headline4,
+                      style: TextStyle(fontSize: 20),
                     ),
                   ),
+                  // Login
                   RaisedButton(
-                    onPressed: () {
-                      Utils.navigator(context, Login());
-                    },
-                    child: Text(AppLocalizations.of(context).login,
-                        style: Theme.of(context).textTheme.headline4),
-                  ),
+                      onPressed: () {
+                        Utils.navigator(context, Login());
+                      },
+                      child: Text(
+                        AppLocalizations.of(context).login,
+                        style: TextStyle(fontSize: 20),
+                      )),
+                  // Help
                   RaisedButton(
                     onPressed: () {
                       Utils.navigator(context, Help());
                     },
                     child: Text(AppLocalizations.of(context).help,
-                        style: Theme.of(context).textTheme.headline4),
+                        style: TextStyle(fontSize: 20)),
                   ),
                 ],
               ),

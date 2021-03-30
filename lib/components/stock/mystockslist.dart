@@ -5,6 +5,7 @@ import 'package:smsflutter/components/stock/mystocktemplate.dart';
 import 'package:smsflutter/models/mystock.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+// Widget used to display the list of stocks owned by the current logged in user
 class MyStocksList extends StatefulWidget {
   @override
   _MyStocksListState createState() => _MyStocksListState();

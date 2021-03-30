@@ -7,6 +7,7 @@ import 'package:smsflutter/services/stocksFirestore.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'myhome.dart';
 
+// Widget used to create a navigation page containing the main menu
 class NavPage extends StatefulWidget {
   @override
   _NavPageState createState() => _NavPageState();
@@ -14,6 +15,7 @@ class NavPage extends StatefulWidget {
 
 class _NavPageState extends State<NavPage> {
   int _index = 0;
+  // Pages
   static final List<Widget> _navPages = <Widget>[MyHome(), Home(), Profile()];
 
   @override
@@ -24,6 +26,7 @@ class _NavPageState extends State<NavPage> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Text('Stock Market Simulator'),
+          // Budget shown in the app bar as action for Ro
           actions: [Budget()],
         ),
         body: Center(child: _navPages.elementAt(_index)),
@@ -31,12 +34,15 @@ class _NavPageState extends State<NavPage> {
           currentIndex: _index,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
+                // MyStocks
                 icon: Icon(Icons.money),
                 label: AppLocalizations.of(context).stocks),
             BottomNavigationBarItem(
+                // Stocks
                 icon: Icon(Icons.home),
                 label: AppLocalizations.of(context).market),
             BottomNavigationBarItem(
+                // Profile
                 icon: Icon(Icons.person),
                 label: AppLocalizations.of(context).profile),
           ],

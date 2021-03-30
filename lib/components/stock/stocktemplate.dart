@@ -4,7 +4,9 @@ import 'package:smsflutter/components/utils.dart';
 import 'package:smsflutter/models/stock.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+// Widget used to display an individual stock
 class StockTemplate extends StatelessWidget {
+  // where the data comes from
   final Stock stock;
 
   StockTemplate({this.stock});
@@ -12,6 +14,7 @@ class StockTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      // Navigate to details page
       onTap: () {
         Utils.navigator(
           context,
@@ -20,6 +23,7 @@ class StockTemplate extends StatelessWidget {
           ),
         );
       },
+      // Get the template from utils using data from the stock
       child: Utils.getTemplateStock(
         context,
         imageUri: stock.imageUri,
