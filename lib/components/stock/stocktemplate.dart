@@ -39,7 +39,7 @@ class StockTemplate extends StatelessWidget {
             Theme.of(context).textTheme.headline6),
         priceDiff: Utils.getColonLabels(
           AppLocalizations.of(context).pricedifference,
-          stock.statistic + AppLocalizations.of(context).currency,
+          stock.statistic + ' ' + AppLocalizations.of(context).currency,
           TextStyle(
               color: double.tryParse(stock.statistic) >= 0
                   ? Colors.green

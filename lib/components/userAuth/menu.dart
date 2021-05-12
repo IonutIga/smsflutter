@@ -30,7 +30,7 @@ class _MenuState extends State<Menu> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stock Market Simulator'),
+        toolbarHeight: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -39,7 +39,7 @@ class _MenuState extends State<Menu> {
           child: Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(bottom: 88.0),
+                padding: const EdgeInsets.fromLTRB(0, 24.0, 0, 160.0),
                 child: Text(
                   'Stock Market Simulator',
                   style: TextStyle(fontSize: 72, color: Utils.primaryColor),

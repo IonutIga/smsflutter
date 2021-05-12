@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:smsflutter/components/loading.dart';
 import 'package:smsflutter/components/utils.dart';
 import 'package:smsflutter/models/stock.dart';
@@ -91,8 +90,8 @@ class _DetailsState extends State<Details> {
                         Expanded(
                           child: Utils.getDetailsCard(
                               context,
-                              AppLocalizations.of(context).current,
-                              widget.stock.nowPrice,
+                              AppLocalizations.of(context).pricediff,
+                              num.tryParse(widget.stock.statistic),
                               color: statisticColor),
                         ),
                       ],
@@ -193,7 +192,7 @@ class _DetailsState extends State<Details> {
                       ),
                     ),
                     SizedBox(
-                      height: 200,
+                      height: MediaQuery.of(context).size.height / 2,
                       child: SingleChildScrollView(
                         // Company description
                         child: Text(

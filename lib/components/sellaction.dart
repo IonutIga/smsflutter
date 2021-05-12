@@ -52,10 +52,7 @@ class _SellActionState extends State<SellAction> {
                         ? currentPrice.toStringAsFixed(2) +
                             AppLocalizations.of(context).currency
                         : " ",
-                    Theme.of(context)
-                        .textTheme
-                        .headline6
-                        .copyWith(color: Colors.green)),
+                    Theme.of(context).textTheme.headline6),
               ),
             ),
           ],

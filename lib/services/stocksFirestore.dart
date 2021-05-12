@@ -188,7 +188,10 @@ class StocksFirestore {
         (element) => element.data['shortname'] != null,
         orElse: () => null);
     if (doc != null) {
-      return doc.data['nowprice'];
+      if (Currency.lang == 'ro')
+        return doc.data['nowprice'] * Currency.currency;
+      else
+        return doc.data['nowprice'];
     } else
       return 0;
   }
