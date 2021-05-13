@@ -56,12 +56,12 @@ class _RegisterState extends State<Register> {
                           // Name
                           TextFormField(
                             // return null if valid or a string as help text
-                            validator: (value) => value.isEmpty
+                            validator: (value) => value.trim().isEmpty
                                 ? AppLocalizations.of(context).insertName
                                 : null,
                             onChanged: (value) {
                               setState(() {
-                                _name = value;
+                                _name = value.trim();
                               });
                             },
                             decoration: InputDecoration(
@@ -72,12 +72,12 @@ class _RegisterState extends State<Register> {
                             // return null if valid or a string as help text
                             validator: (value) =>
                                 // Email Validator for checking email correctness
-                                !EmailValidator.validate(value)
+                                !EmailValidator.validate(value.trim())
                                     ? AppLocalizations.of(context).invalidEmail
                                     : null,
                             onChanged: (value) {
                               setState(() {
-                                _email = value;
+                                _email = value.trim();
                               });
                             },
                             decoration: InputDecoration(

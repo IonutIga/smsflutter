@@ -62,7 +62,7 @@
 
   "insertName": "Vă rugăm introduceți un nume!",
 
-  "invalidPassword": "Parola este invalidă. Trebuie să aibă minim 8 caractere lungime și să conțină o litera mare și un număr.",
+  "invalidPassword": "Parola este invalidă.\nTrebuie să conțină minim:\n 8 caractere lungime\n o literă mare\n o literă mică\n un număr.",
 
   "password": "Parolă",
 

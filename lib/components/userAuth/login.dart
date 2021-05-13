@@ -54,12 +54,12 @@ class _LoginState extends State<Login> {
                           TextFormField(
                             // return null if valid or a string as help text
                             validator: (value) =>
-                                !EmailValidator.validate(value)
+                                !EmailValidator.validate(value.trim())
                                     ? AppLocalizations.of(context).invalidEmail
                                     : null,
                             onChanged: (value) {
                               setState(() {
-                                _email = value;
+                                _email = value.trim();
                               });
                             },
                             decoration: InputDecoration(

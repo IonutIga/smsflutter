@@ -163,7 +163,7 @@
     "description": "Label for insertName"
   },
 
-  "invalidPassword": "Your password is invalid. It must be minimum 8 characters length, containing an upper letter, lower letter and a number.",
+  "invalidPassword": "Your password is invalid.\nIt must contain minimum:\n 8 characters length\n an upper letter\n a lower letter\n a number.",
   "@invalidPassword": {
     "description": "Label for invalidPassword"
   },
