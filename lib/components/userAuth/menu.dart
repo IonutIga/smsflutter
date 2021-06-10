@@ -23,7 +23,7 @@ class _MenuState extends State<Menu> {
   // User will reach this page at least once
   initPrefs() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    if (pref.getDouble('currency') == null) pref.setDouble('currency', 4.4);
+    if (pref.getDouble('currency') == null) pref.setDouble('currency', 4.88);
   }
 
   @override

@@ -35,7 +35,7 @@ class MyStockTemplate extends StatelessWidget {
           ),
         );
       },
-      // Get the template from utils using data from the woned stock
+      // Get the template from utils using data from the owned stock
       child: Utils.getTemplateStock(
         context,
         imageUri: mystock.imageUri,

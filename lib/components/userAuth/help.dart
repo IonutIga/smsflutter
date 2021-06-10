@@ -14,7 +14,7 @@ class _HelpState extends State<Help> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Create an store the VideoPlayerController. The VideoPlayerController
+    // Create and store the VideoPlayerController. The VideoPlayerController
     // offers several different constructors to play videos from assets, files,
     // or the internet.
 

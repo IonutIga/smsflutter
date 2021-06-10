@@ -6,7 +6,6 @@ import 'package:smsflutter/models/mystockgroup.dart';
 
 // Widget representing the chart of owned stocks
 class MyStockChart extends StatelessWidget {
-  MyStockChart();
   @override
   Widget build(BuildContext context) {
     // Get the list of stock groups
@@ -15,11 +14,11 @@ class MyStockChart extends StatelessWidget {
     // Create series which are data for the chart
     List<Series<MyStockGroup, String>> series = [
       Series(
-        id: 'owned',
-        data: myStockGroup,
-        domainFn: (MyStockGroup m, _) => m.name,
-        measureFn: (MyStockGroup m, _) => m.quantity,
-      ),
+          id: 'owned',
+          data: myStockGroup,
+          domainFn: (MyStockGroup m, _) => m.name,
+          measureFn: (MyStockGroup m, _) => m.quantity,
+          colorFn: (MyStockGroup m, _) => m.colorOfBar),
     ];
 
     return myStockGroup == null

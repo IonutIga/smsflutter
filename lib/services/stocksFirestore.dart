@@ -1,10 +1,12 @@
 import 'dart:core';
+import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:smsflutter/models/currency.dart';
 import 'package:smsflutter/models/mystock.dart';
 import 'package:smsflutter/models/mystockgroup.dart';
 import 'package:smsflutter/models/stock.dart';
 import 'package:smsflutter/services/auth.dart';
+import 'package:charts_flutter/flutter.dart';
 
 // Class used to communicate with Firestore database
 class StocksFirestore {
@@ -150,8 +152,13 @@ class StocksFirestore {
       if (myStockGroup != null)
         myStockGroup.quantity += myStock.quantity;
       else
-        list.add(
-            MyStockGroup(name: myStock.shortName, quantity: myStock.quantity));
+        list.add(MyStockGroup(
+            name: myStock.shortName,
+            quantity: myStock.quantity,
+            colorOfBar: Color(
+                r: Random().nextInt(254) + 1,
+                g: Random().nextInt(254) + 1,
+                b: Random().nextInt(254) + 1)));
     }
 
     return list;
@@ -205,7 +212,9 @@ class StocksFirestore {
               myStockId: doc.documentID,
               shortName: doc.data['shortname'],
               longName: doc.data['longname'],
-              buyPrice: doc.data['buyprice'] * doc.data['ronrate'],
+              buyPrice: Currency.lang != 'ro'
+                  ? doc.data['buyprice']
+                  : doc.data['buyprice'] * doc.data['ronrate'],
               imageUri: doc.data['imageuri'],
               quantity: doc.data['quantity'],
               ronRate: doc.data['ronrate']),
