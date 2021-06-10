@@ -92,7 +92,7 @@ class StocksFirestore {
         snapshot.documents.firstWhere((doc) => doc.exists, orElse: () => null);
     if (doc != null)
       await myStocks.document(doc.documentID).updateData({
-        'quantity': doc != null ? doc.data['quantity'] + quantity : quantity,
+        'quantity': doc.data['quantity'] + quantity,
       });
     else
       await myStocks.document().setData({
